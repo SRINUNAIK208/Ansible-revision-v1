@@ -2,14 +2,14 @@
   hosts: payment 
   become: yes 
   tasks:
-  - name: install python pakage 
-    ansible.builtin.package:
-      name: "{{ item }}"
-      state: installed 
-    loop:
-    - python3 
-    - gcc 
-    - python3-devel 
+    - name: install python pakage 
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: installed 
+      loop:
+      - python3 
+      - gcc 
+      - python3-devel 
 
   
     - name: create system user 
