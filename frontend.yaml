@@ -5,6 +5,7 @@
   - name: disabled lastest version and enabled old version
     ansible.builtin.command: dnf module disable nginx -y
     ansible.builtin.command: dnf module enable nginx:1.24 -y
+
   - name: install nginx
     ansible.builtin.package:
       name: nginx
@@ -18,12 +19,12 @@
 
   - name: remove default content 
     ansible.builtin.file:
-      path: /usr/share/nginx/html/* 
+      path: /usr/share/nginx/html/
       state: absent 
 
   - name: create the folder 
     ansible.builtin.file:
-      name: /usr/share/nginx/html
+      path: /usr/share/nginx/html
       start: directory
 
   - name: downloadthe app code 
@@ -41,9 +42,14 @@
     ansible.builtin.file:
       path: /etc/nginx.nginx.conf 
       state: absent
+      
   - name: add the nginx conf 
     ansible.builtin.copy:
       src: nginx.conf 
       dest: /etc/nginx/nginx.conf 
 
-  
+  - name: start and enable nginx service
+    ansible.builtin.service:
+        name: nginx
+        state: restarted 
+        
