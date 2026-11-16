@@ -25,7 +25,7 @@
   - name: create the folder 
     ansible.builtin.file:
       path: /usr/share/nginx/html
-      start: directory
+      state: directory
 
   - name: downloadthe app code 
     ansible.builtin.get_url:
@@ -42,7 +42,7 @@
     ansible.builtin.file:
       path: /etc/nginx.nginx.conf 
       state: absent
-      
+
   - name: add the nginx conf 
     ansible.builtin.copy:
       src: nginx.conf 
