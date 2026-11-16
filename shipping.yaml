@@ -64,7 +64,7 @@
         state: import
         login_user: root
         login_password: RoboShop@1 
-        login_host: mysql-{{ env }}.srinunayak.online
+        login_host: mysql.srinunayak.online
         target: "{{ item }}"
       loop:
       - /app/db/schema.sql
