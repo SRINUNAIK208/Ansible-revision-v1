@@ -2,4 +2,20 @@
   hosts: frontend
   become: yes 
   tasks:
-  - name: 
+  - name: disabled lastest version and enabled old version
+    ansible.builtin.command: dnf module disable nginx -y
+    ansible.builtin.command: dnf module enable nginx:1.24 -y
+  - name: install nginx
+    ansible.builtin.package:
+      name: nginx
+      state: installed 
+
+  - name: start and enable nginx service
+    ansible.builtin.service:
+      name: nginx
+      state: started 
+      enabled: yes 
+
+  - name: remove default content 
+    ansible.builtin.file:
+      
